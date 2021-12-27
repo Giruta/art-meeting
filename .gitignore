@@ -2,7 +2,7 @@
 package-lock.json
 public/
 yarn.lock
-
+.gitignore
 # Logs
 logs
 *.log
@@ -45,7 +45,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+p
 # TypeScript v1 declaration files
 typings/
 
@@ -86,6 +86,7 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist
+build
 
 # Gatsby files
 .cache/

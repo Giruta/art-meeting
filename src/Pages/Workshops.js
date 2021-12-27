@@ -5,21 +5,21 @@ import {Col, Container, Image, Row} from "react-bootstrap";
 import template from "../assets/template.png";
 import {Link} from "react-router-dom";
 
-const Trainings = () => {
+const Workshops = () => {
   return(
-    <div id='trainings'>
+    <div id='workshops'>
       <Header background={'green-bg'}/>
-      <section className='trainings section'>
+      <section className='workshops section'>
         <Container>
           <Row>
             <Col sm={12} className='text-center'>
-              <h2 className='trainings-title blu-dot title'>Business Trainings</h2>
+              <h2 className='workshops-title blu-dot title'>Personal Growth Trainings</h2>
             </Col>
           </Row>
           <Row className='justify-content-center'>
             <Col sm={10} className='position-relative'>
-              <Link to={/example/} className='d-block'><Image className='trainings-img image' src={star}/></Link>
-              <h4 className='trainings-title subtitle'>Бизнес-тренинг (пример)</h4>
+              <Link to={/example/} className='d-block'><Image className='workshops-img image' src={template}/></Link>
+              <h4 className='workshops-title subtitle'>Тренинг по личностному росту (пример)</h4>
             </Col>
           </Row>
         </Container>
@@ -29,4 +29,4 @@ const Trainings = () => {
   );
 }
 
-export default Trainings;
+export default Workshops;

@@ -1,13 +1,13 @@
 import React from "react";
-// import { Text } from "react-native";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import {Col, Container, Image, Row} from "react-bootstrap";
 import template from "../assets/template.png";
 import {Link} from "react-router-dom";
-// import useFetch from "../Helpers/useFetch";
+import fetchData from "../Helpers/useFetch";
 
 const Blog = () => {
+
   // const { data: projects, isPending, error } = useFetch('http://localhost:8080/projects');
   return(
     <div id='blog'>

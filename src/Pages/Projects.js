@@ -19,7 +19,7 @@ const Projects = () => {
             </Col>
             <Col sm={12} className='position-relative'>
               <Link to={/example/} className='d-block'><Image className='projects-img image' src={template}/></Link>
-              <h4 className='project-title'>Проект(пример)</h4>
+              <h4 className='project-title subtitle'>Проект(пример)</h4>
             </Col>
           </Row>
         </Container>

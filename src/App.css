@@ -76,10 +76,22 @@ a:hover {
   color: #ffbc64;
 }
 .gray-bg {
-  background: rgba(0, 0, 0, 0.1);
+  background-color: #8ba7d8;
+  /*background: rgba(0, 0, 0, 0.1);*/
+  z-index: 5000000;
+}
+.gray-bg .dropdown-menu.show {
+  background-color: #8ba7d8;
 }
 .green-bg {
   background: #2390a3;
+  z-index: 5000000;
+}
+.green-bg .dropdown-menu.show {
+  background-color: #2390a3;
+}
+#header .dropdown-menu.show .nav-link {
+  color: white;
 }
 .section {
   padding: 76px 0;
@@ -92,13 +104,38 @@ a:hover {
   height: auto;
   object-fit: cover;
 }
+.subtitle {
+  color: white;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.icon {
+  font-size: 5rem;
+  cursor: pointer;
+}
+.icon:hover {
+  color: #ffbc64;
+}
+.wrapper-spinner {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #f8f8f8ad;
+}
+.wrapper-spinner .spinner {
+  top: 30%;
+  left: 48%;
+  z-index: 1000;
+  position: absolute;
+}
 /*////////////////////////*/
 /*-----HOME-PAGE---------*/
 /*////////////////////////*/
 /*-----header--------*/
-#header .dropdown-menu.show .nav-link {
-  color: #000;
-}
 #header .dropdown-item:hover {
   background-color: #ffbc64;
 }
@@ -128,10 +165,14 @@ a:hover {
   margin: 4.375rem 0 2.5rem 0;
   letter-spacing: 9px;
   font-size: 3.75rem;
+  height: 80px;
+  overflow: hidden;
 }
 .header-subtitle {
-  width: 48%;
+  width: 50%;
   margin: 0 auto;
+  height: 74px;
+  overflow: hidden;
 }
 .header-img {
   position: absolute;
@@ -245,39 +286,18 @@ a:hover {
 /*-----ABOUT-PAGE---------*/
 /*////////////////////////*/
 /*---------aboutme----------*/
-/*.aboutme-img, .aboutme-photo {*/
-/*  width: 100%;*/
-/*  height: auto;*/
-/*  object-fit: cover;*/
-/*}*/
+
 /*////////////////////////*/
 /*-----PROJECT-PAGE---------*/
 /*////////////////////////*/
 .projects-img {
-  /*width: 100%;*/
-  /*height: auto;*/
-  /*object-fit: cover;*/
   position: relative;
-}
-.project-title {
-  color: white;
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 /*////////////////////////*/
 /*-----VIDEO-PAGE---------*/
 /*////////////////////////*/
 .video-img {
   position: relative;
-}
-.video-subtitle {
-  color: white;
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 .video iframe {
   width: 100%;
@@ -287,17 +307,27 @@ a:hover {
 /*////////////////////////*/
 /*-----BLOG-PAGE---------*/
 /*////////////////////////*/
-/*.blog-img {*/
-/*  width: 100%;*/
-/*  height: auto;*/
-/*  object-fit: cover;*/
-/*}*/
+
 /*////////////////////////*/
 /*-----MEDIA---------*/
 /*////////////////////////*/
+@media (min-width: 992px) {
+  .header-title {
+    margin: 4.375rem 0 2.5rem 0;
+    height: 80px;
+  }
+}
 @media (max-width: 991px) {
   .header-wrapper, .header-img {
     height: 100vh;
+  }
+  .header-title {
+    margin: 4.375rem 0 2.5rem 0;
+    height: 80px
+  }
+  .header-subtitle {
+    width: 60%;
+    height: 130px;
   }
 }
 @media (max-width: 767px) {
@@ -310,9 +340,13 @@ a:hover {
   .header-title {
     margin: 2rem 0;
     font-size: 2.5rem;
+    height: 100px;
   }
   .info-quote {
     margin: 4rem 0;
+  }
+  .blog {
+    padding: 0;
   }
 }
 @media (max-width: 576px) {
@@ -320,7 +354,8 @@ a:hover {
     padding: 40px 20px;
   }
   .header-subtitle {
-    width: 75%;
+    width: 100%;
+    height: 146px;
   }
   .btn-wrapper {
     padding: 0.75rem 3rem;

@@ -29,11 +29,11 @@ const Header = (props) => {
                   <NavDropdown.Item href="#courses">
                     <Link className='nav-link' tabIndex='0' role='button' to='/courses'>Курсы</Link>
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#trenings">
-                    <Link className='nav-link' tabIndex='0' role='button' to='/trenings'>Корпоративные тренинги</Link>
+                  <NavDropdown.Item href="#trainings">
+                    <Link className='nav-link' tabIndex='0' role='button' to='/trainings'>Корпоративные тренинги</Link>
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#masterclasses">
-                    <Link className='nav-link' tabIndex='0' role='button' to='/masterclasses'>Мастер-классы</Link>
+                  <NavDropdown.Item href="#workshops">
+                    <Link className='nav-link' tabIndex='0' role='button' to='/workshops'>Мастер-классы</Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#consultations">
                     <Link className='nav-link' tabIndex='0' role='button' to='/consultations'>Консультации</Link>

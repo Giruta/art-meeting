@@ -19,7 +19,7 @@ const Video = () => {
             </Col>
             <Col sm={12} className='position-relative'>
               <Link to={/example/} className='d-block'><Image className='video-img image' src={template}/></Link>
-              <h4 className='video-subtitle'>Видео(пример)</h4>
+              <h4 className='video-subtitle subtitle'>Видео(пример)</h4>
             </Col>
           </Row>
         </Container>
