@@ -18,20 +18,17 @@ const App = () => {
   return (
     <Router>
       <div className='App'>
-        {/*<Header />*/}
-        {/*<div className='content'>*/}
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/about' element={<About />} />
-            <Route exact path='/projects' element={<Projects />} />
-            <Route exact path='/video' element={<Video />} />
-            <Route exact path='/blog' element={<Blog />} />
-            <Route exact path='/courses' element={<Courses />} />
-            <Route exact path='/trainings' element={<Trainings />} />
-            <Route exact path='/workshops' element={<Workshops />} />
-            <Route exact path='/consultations' element={<Consultations />} />
-          </Routes>
-        {/*</div>*/}
+        <Routes>
+          <Route exact path='/art-meeting' element={<Home />} />
+          <Route exact path='/about' element={<About />} />
+          <Route exact path='/projects' element={<Projects />} />
+          <Route exact path='/video' element={<Video />} />
+          <Route exact path='/blog' element={<Blog />} />
+          <Route exact path='/courses' element={<Courses />} />
+          <Route exact path='/trainings' element={<Trainings />} />
+          <Route exact path='/workshops' element={<Workshops />} />
+          <Route exact path='/consultations' element={<Consultations />} />
+        </Routes>
       </div>
     </Router>
   );
