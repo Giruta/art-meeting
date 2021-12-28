@@ -17,7 +17,7 @@ import Course from "./Pages/Course";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/art-meeting">
       <div className='App'>
         <Routes>
           <Route exact path='/' element={<Home />} />
