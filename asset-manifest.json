@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/art-meeting/static/css/main.7bc8274e.css",
-    "main.js": "/art-meeting/static/js/main.aa91c71b.js",
+    "main.js": "/art-meeting/static/js/main.f65fd687.js",
     "static/media/main.jpeg": "/art-meeting/static/media/main.14de710b38c803a54d1c.jpeg",
     "static/media/about.png": "/art-meeting/static/media/about.7a7dd0d6ac6c59a515d2.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/art-meeting/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -17,10 +17,10 @@
     "index.html": "/art-meeting/index.html",
     "static/media/arrow.svg": "/art-meeting/static/media/arrow.5333df30faba876ba81f2497a785dc88.svg",
     "main.7bc8274e.css.map": "/art-meeting/static/css/main.7bc8274e.css.map",
-    "main.aa91c71b.js.map": "/art-meeting/static/js/main.aa91c71b.js.map"
+    "main.f65fd687.js.map": "/art-meeting/static/js/main.f65fd687.js.map"
   },
   "entrypoints": [
     "static/css/main.7bc8274e.css",
-    "static/js/main.aa91c71b.js"
+    "static/js/main.f65fd687.js"
   ]
 }
