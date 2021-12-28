@@ -13,6 +13,7 @@ import Courses from "./Pages/Courses";
 import Trainings from "./Pages/Trainings";
 import Workshops from "./Pages/Workshops";
 import Consultations from "./Pages/Consultations";
+import Course from "./Pages/Course";
 
 const App = () => {
   return (
@@ -20,14 +21,16 @@ const App = () => {
       <div className='App'>
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/projects' element={<Projects />} />
-          <Route path='/video' element={<Video />} />
-          <Route path='/blog' element={<Blog />} />
-          <Route path='/courses' element={<Courses />} />
-          <Route path='/trainings' element={<Trainings />} />
-          <Route path='/workshops' element={<Workshops />} />
-          <Route path='/consultations' element={<Consultations />} />
+          <Route exact path='/about' element={<About />} />
+          <Route exact path='/projects' element={<Projects />} />
+          <Route exact path='/video' element={<Video />} />
+          <Route exact path='/blog' element={<Blog />} />
+          <Route exact path='/courses' element={<Courses />}>
+            <Route path=":courseId" element={<Course />} />
+          </Route>
+          <Route exact path='/trainings' element={<Trainings />} />
+          <Route exact path='/workshops' element={<Workshops />} />
+          <Route exact path='/consultations' element={<Consultations />} />
         </Routes>
       </div>
     </Router>
