@@ -12,7 +12,6 @@ import CourseComponent from "../Components/CourseComponent";
 
 const Course = ({match}) => {
   const {id} = useParams();
-  console.log('match = ', match);
   console.log('id = ', id);
   // const id = match.params.id;
   const [course, setCourse] = useState(null);
