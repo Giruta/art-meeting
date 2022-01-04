@@ -13,7 +13,7 @@ const Header = (props) => {
                  className = {classNames(background, 'p-fix')}>
         <Navbar collapseOnSelect expand='md' id="navbar">
           <Container>
-            <Navbar.Brand href='/'><img src={logo} alt="logo"/></Navbar.Brand>
+            <Navbar.Brand href='/art-meeting'><img src={logo} alt="logo"/></Navbar.Brand>
             <Navbar.Toggle className='me-auto' aria-controls='responsive-navbar-nav' />
             <Navbar.Collapse id='responsive-navbar-nav'>
               <Nav className='me-auto'>

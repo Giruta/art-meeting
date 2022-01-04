@@ -5,6 +5,8 @@ import {Col, Container, Image, Row} from "react-bootstrap";
 import work from "../assets/work.jpeg";
 import {Link} from "react-router-dom";
 import spinner from "../assets/spinner.svg";
+import Course from "./Course";
+import CourseComponent from "../Components/CourseComponent";
 
 const Courses = () => {
   const [courses, setCourses] = useState({});
@@ -36,19 +38,28 @@ const Courses = () => {
         <Header background={'green-bg'}/>
         <section className='courses section'>
           <Container>
-            {
-              courses.map(course => {
-                <Link key={course.id} to={`/courses/${course.id}`}>
-                  <li>{course.title}</li>
-                </Link>
-              })
-            }
-            {/*<Row className='justify-content-center'>*/}
-            {/*  <Col sm={10} className='position-relative'>*/}
-            {/*    <Link to={'/'} className='d-block'><Image className='courses-img image' src={work}/></Link>*/}
-            {/*    <h4 className='courses-title subtitle'>Курс(пример)</h4>*/}
-            {/*  </Col>*/}
-            {/*</Row>*/}
+          {/*  <>*/}
+          {/*    <Link key={courses[15].id} to={`/courses/${courses[15].id}`}>*/}
+          {/*    <li>{courses[15].title}</li>*/}
+          {/*  </Link>*/}
+          {/*    <Link key={courses[1].id} to={`/courses/${courses[1].id}`}>*/}
+          {/*      <li>{courses[1].title}</li>*/}
+          {/*    </Link>*/}
+          {/*  </>*/}
+
+          <>
+            if(courses) {
+            courses.forEach(course => {
+
+              <Link key={course.id} to={`/courses/${course.id}`}>
+                <li>{course.title}</li>
+                {/*<CourseComponent course={course}/>*/}
+              </Link>
+            })
+          }
+          </>
+
+
           </Container>
         </section>
         <Footer/>

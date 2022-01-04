@@ -2,30 +2,32 @@ import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import {Button, Col, Container, Form, Image, Row} from "react-bootstrap";
-import photo from "../assets/photo.jpeg";
-import { Link } from "react-router-dom";
+// import photo from "../assets/photo.jpeg";
+// import { Link } from "react-router-dom";
 // import { useParam } from "react-router-dom";
 import { useState, useEffect} from "react";
-import work from "../assets/work.jpeg";
+// import work from "../assets/work.jpeg";
 import spinner from "../assets/spinner.svg";
+import CourseComponent from "../Components/CourseComponent";
 
-const Course = () => {
+const Course = ({match}) => {
   // const {id} = useParam();
+  const id = match.params.id;
   const [course, setCourse] = useState(null);
   const [language, setLanguage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //
-  //   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log('result = ', result);
-  //       setCourse(result);
-  //       setIsLoading(false);
-  //     });
-  // }, [id])
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then(response => response.json())
+      .then(result => {
+        console.log('result = ', result);
+        setCourse(result);
+        setIsLoading(false);
+      });
+  }, [id])
 
   return(
     <>
@@ -43,15 +45,10 @@ const Course = () => {
             <Container>
               <Row>
                 <Col sm={12} className='text-center'>
-                  <h2 className='course-title blu-dot title'>Courses</h2>
+                  <h2 className='course-title blu-dot title'>course.title</h2>
                 </Col>
               </Row>
-              <Row className='justify-content-center'>
-                <Col sm={10} className='position-relative'>
-                  <Image className='course-img image' src={work}/>
-                  <h4 className='course-title subtitle'>Курс(пример)</h4>
-                </Col>
-              </Row>
+              <CourseComponent course={course}/>
               <Row className='color-wrapper'>
                 <div className='border-wrapper'></div>
                 <Col sm={12}>
