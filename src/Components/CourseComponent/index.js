@@ -6,11 +6,12 @@ import work from "../../assets/work.jpeg";
 
 const CourseComponent = (props) => {
   // const {id} = useParams();
-  const {course} = props.course;
+  const course = props.course;
+  console.log('course from Component = ', course);
     return (
       <Row className='justify-content-center'>
         <Col sm={10} className='position-relative'>
-          <Image className='course-img image' src={work}/>
+          <Image className='course-img image mb-5' src={work}/>
           {/*<Image className='course-img image' src={course.src}/>*/}
           <h4 className='course-title subtitle'>{course.title}</h4>
         </Col>

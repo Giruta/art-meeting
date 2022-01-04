@@ -38,26 +38,25 @@ const Courses = () => {
         <Header background={'green-bg'}/>
         <section className='courses section'>
           <Container>
-          {/*  <>*/}
-          {/*    <Link key={courses[15].id} to={`/courses/${courses[15].id}`}>*/}
-          {/*    <li>{courses[15].title}</li>*/}
-          {/*  </Link>*/}
-          {/*    <Link key={courses[1].id} to={`/courses/${courses[1].id}`}>*/}
-          {/*      <li>{courses[1].title}</li>*/}
-          {/*    </Link>*/}
-          {/*  </>*/}
-
-          <>
-            if(courses) {
-            courses.forEach(course => {
-
-              <Link key={course.id} to={`/courses/${course.id}`}>
-                <li>{course.title}</li>
-                {/*<CourseComponent course={course}/>*/}
+            <>
+              <Link key={courses[15].id} to={`/courses/${courses[15].id}`}>
+              <li>{courses[15].title}</li>
               </Link>
-            })
-          }
-          </>
+              <Link key={courses[1].id} to={`/courses/${courses[1].id}`}>
+                <li>{courses[1].title}</li>
+              </Link>
+            </>
+
+          {/*<>*/}
+          {/*  {*/}
+          {/*    Array.from(courses).forEach(course => {*/}
+          {/*      <Link key={course.id} to={`/courses/${course.id}`}>*/}
+          {/*        <li>{course.title}</li>*/}
+          {/*        <CourseComponent course={course}/>*/}
+          {/*      </Link>*/}
+          {/*    })*/}
+          {/*  }*/}
+          {/*</>*/}
 
 
           </Container>

@@ -4,15 +4,17 @@ import Footer from "../Components/Footer";
 import {Button, Col, Container, Form, Image, Row} from "react-bootstrap";
 // import photo from "../assets/photo.jpeg";
 // import { Link } from "react-router-dom";
-// import { useParam } from "react-router-dom";
+import { useParams } from "react-router";
 import { useState, useEffect} from "react";
 // import work from "../assets/work.jpeg";
 import spinner from "../assets/spinner.svg";
 import CourseComponent from "../Components/CourseComponent";
 
 const Course = ({match}) => {
-  // const {id} = useParam();
-  const id = match.params.id;
+  const {id} = useParams();
+  console.log('match = ', match);
+  console.log('id = ', id);
+  // const id = match.params.id;
   const [course, setCourse] = useState(null);
   const [language, setLanguage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +29,7 @@ const Course = ({match}) => {
         setCourse(result);
         setIsLoading(false);
       });
-  }, [id])
+  }, [])
 
   return(
     <>
@@ -45,10 +47,11 @@ const Course = ({match}) => {
             <Container>
               <Row>
                 <Col sm={12} className='text-center'>
-                  <h2 className='course-title blu-dot title'>course.title</h2>
+                  <h2 className='course-title blu-dot title'>{course.title}</h2>
                 </Col>
               </Row>
-              <CourseComponent course={course}/>
+              {console.log('course!!!!! = ', course)}
+              <CourseComponent course={course} />
               <Row className='color-wrapper'>
                 <div className='border-wrapper'></div>
                 <Col sm={12}>
