@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
-
+// import { useState, useEffect } from "react";
+//
 // export const fetchData = async (url) => {
-  // const [data, setData] = useState(null);
-  // const [isPending, setIsPending] = useState(true);
-  // const [error, setError] = useState(null);
-
-//   try {
-//     let response = await fetch(url);
-//     let json = await response.json();
-//     return { success: true, data: json };
+//   const [data, setData] = useState(null);
+//   const [courses, setCourses] = useState({});
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState('');
+//
+//   try{
+//     setIsLoading(true);
+//     const result = await fetch(url);
+//     const json = await result.json();
+//     setCourses(json);
+//     setIsLoading(false);
+//     console.log(json)
 //   } catch (error) {
-//     console.log(error);
-//     return { success: false };
+//     console.error(error)
+//     setError(error);
 //   }
 // }
 

@@ -13,56 +13,56 @@ const Courses = () => {
   const [language, setLanguage] = useState('');
   const [pageId, setPageId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-
-    fetch('https://jsonplaceholder.typicode.com/posts/')
-      .then(response => response.json())
-      .then(result => {
-        console.log('result = ', result);
-        setCourses(result);
+    const url = 'https://jsonplaceholder.typicode.com/posts/';
+    const fetchData = async () => {
+      try{
+        setIsLoading(true);
+        const result = await fetch(url);
+        const json = await result.json();
+        setCourses(json);
         setIsLoading(false);
-      });
+        console.log(json)
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      }
+    };
+    fetchData();
   }, []);
+
+  const useCourses = Array.from(courses).map((course) => {
+    return (
+        // <Link key={course.id} to={`/courses/${course.id}`}>
+        //   <li>{course.title}</li>
+        // </Link>
+      <Link key={course.id} to={`/courses/${course.id}`}>
+        <CourseComponent course={course} />
+      </Link>
+      )
+  })
 
   return(
     <>
       {isLoading
-      ?
-      <div className='wrapper-spinner'>
-        <Image src={spinner} className='spinner' alt='spinner'/>
-      </div>
-      :
-      <div id='courses'>
-        <Header background={'green-bg'}/>
-        <section className='courses section'>
-          <Container>
-            <>
-              <Link key={courses[15].id} to={`/courses/${courses[15].id}`}>
-              <li>{courses[15].title}</li>
-              </Link>
-              <Link key={courses[1].id} to={`/courses/${courses[1].id}`}>
-                <li>{courses[1].title}</li>
-              </Link>
-            </>
-
-          {/*<>*/}
-          {/*  {*/}
-          {/*    Array.from(courses).forEach(course => {*/}
-          {/*      <Link key={course.id} to={`/courses/${course.id}`}>*/}
-          {/*        <li>{course.title}</li>*/}
-          {/*        <CourseComponent course={course}/>*/}
-          {/*      </Link>*/}
-          {/*    })*/}
-          {/*  }*/}
-          {/*</>*/}
-
-
-          </Container>
-        </section>
-        <Footer/>
-      </div>
+        ?
+        <div className='wrapper-spinner'>
+          <Image src={spinner} className='spinner' alt='spinner'/>
+        </div>
+        :
+        <div id='courses'>
+          <Header background={'green-bg'}/>
+          <section className='courses section'>
+            <Container>
+              <ul className='mt-5'>
+                {courses && useCourses}
+              </ul>
+            </Container>
+          </section>
+          <Footer/>
+        </div>
       }
     </>
   );

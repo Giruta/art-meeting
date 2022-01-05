@@ -26,7 +26,7 @@ const App = () => {
           <Route exact path='/video' element={<Video />} />
           <Route exact path='/blog' element={<Blog />} />
           <Route exact path='/courses' element={<Courses />} />
-          <Route path="/courses/:id" element={<Course />} />
+          <Route exact path="/courses/:id" element={<Course />} />
           {/*<Route exact path='/courses/' element={<Courses />} >*/}
           {/*  <Route path=":id" element={<Course />} />*/}
           {/*</Route>*/}

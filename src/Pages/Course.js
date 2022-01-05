@@ -10,25 +10,43 @@ import { useState, useEffect} from "react";
 import spinner from "../assets/spinner.svg";
 import CourseComponent from "../Components/CourseComponent";
 
-const Course = ({match}) => {
+const Course = () => {
   const {id} = useParams();
   console.log('id = ', id);
-  // const id = match.params.id;
-  const [course, setCourse] = useState(null);
+  const [course, setCourse] = useState({});
   const [language, setLanguage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then(response => response.json())
-      .then(result => {
-        console.log('result = ', result);
-        setCourse(result);
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+    const fetchData = async () => {
+      try{
+        setIsLoading(true);
+        const result = await fetch(url);
+        const json = await result.json();
+        setCourse(json);
         setIsLoading(false);
-      });
-  }, [])
+        console.log('json from course = ', json)
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //
+  //   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  //     .then(response => response.json())
+  //     .then(result => {
+  //       console.log('result = ', result);
+  //       setCourse(result);
+  //       setIsLoading(false);
+  //     });
+  // }, [])
 
   return(
     <>
