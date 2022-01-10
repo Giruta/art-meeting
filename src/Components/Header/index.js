@@ -51,7 +51,7 @@ const Header = (props) => {
                   className='nav-link'
                   tabIndex='0'
                   role='button'
-                  to='/blog'
+                  to='/blogs'
                 >
                   Блог
                 </Link>

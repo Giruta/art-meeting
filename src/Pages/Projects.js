@@ -11,7 +11,7 @@ const Projects = () => {
   return(
     <div id='projects'>
       <Header background={'green-bg'}/>
-      <section className='projects section'>
+      <section className='projects page'>
         <Container>
           <Row>
             <Col sm={12} className='text-center'>

@@ -1,44 +1,90 @@
 import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import {Col, Container, Image, Row} from "react-bootstrap";
-import template from "../assets/template.png";
-import {Link} from "react-router-dom";
-import fetchData from "../Helpers/useFetch";
+import {Button, Col, Container, Form, Image, Row} from "react-bootstrap";
+import { useParams } from "react-router";
+import { useState, useEffect} from "react";
+import spinner from "../assets/spinner.svg";
+import BlogComponent from "../Components/BlogComponent";
+import CustomersService from "../Helpers/CustomersService";
+
+const customersService = new CustomersService();
 
 const Blog = () => {
+  const {id} = useParams();
 
-  // const { data: projects, isPending, error } = useFetch('http://localhost:8080/projects');
+  const [pageId, setPageId] = useState('blog');
+  const [blog, setBlog] = useState({});
+  const [language, setLanguage] = useState('ru');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+
+  //post-запрос при загрузке страницы для получения контента для страницы Блог по Id
+  useEffect(()=>{
+    // const url = endpoints.getContentBlogPage; // endpoint для получения контента для блога по id
+    const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+    const requestOptions = {
+      // method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({ mylang: language, mypage: pageId, id})
+    };
+    customersService.fetchData(url, setIsLoading, setBlog, setError, requestOptions)
+  }, [id])
+
   return(
-    <div id='blog'>
-      <Header background={'green-bg'}/>
-      <section className='blog section'>
-        <Container>
-          <Row>
-            <Col sm={12} className='text-center'>
-              <h2 className='blog-title blu-dot title'>Blog</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={12} md={6}>
-              <Link to={/#/} className='d-block'><Image className='blog-img image' src={template}/></Link>
-            </Col>
-            <Col sm={12} md={6} className='mt-md-0 mt-3'>
-              <h4 className='blog-title'>Публикация в блоге(пример)</h4>
-              <h6>Some new</h6>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis na…
-              </p>
-              <p>
-                <span className='blog-date'>11 ноября 2020 г.</span>
-                <span className='blog-time'>12:53</span>
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      <Footer/>
-    </div>
+    <>
+      {isLoading
+        ?
+        <div className='wrapper-spinner'>
+          <Image src={spinner} className='spinner' alt='spinner'/>
+        </div>
+        :
+        <div id='blog'>
+          <Header
+            background={'gray-bg'}
+          />
+          <section className='blog page'>
+            <Container>
+              <Row>
+                <Col sm={12} className='text-center'>
+                  <h2 className='course-title blu-dot title'>{blog.title}</h2>
+                </Col>
+              </Row>
+              <BlogComponent blog={blog} />
+              <Row className='color-wrapper mt-5'>
+                <div className='border-wrapper'></div>
+                <Col sm={12}>
+                  <div className='send-wrapper'>
+                    <Row>
+                      <Col sm={12}>
+                        <h3 className='send-title yellow-dot'>
+                          Давайте обсудим  чем я могу вам помочь..
+                        </h3>
+                        <Form id='form-send' className='form-send'>
+                          <Row>
+                            <Col lg={4} md={12}>
+                              <Form.Control id='name' className='send-input mb-3' type='text' placeholder="Имя" />
+                            </Col>
+                            <Col lg={4} md={12}>
+                              <Form.Control id='phone' className='send-input mb-3' type='phone' placeholder='+38 (___) ___-__-__ ' />
+                            </Col>
+                            <Col lg={4} md={12}>
+                              <Button className="btn-send btn btn-orange text-center m-0" type="submit">Записаться</Button>
+                            </Col>
+                          </Row>
+                        </Form>
+                      </Col>
+                    </Row>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+          <Footer/>
+        </div>
+      }
+    </>
   );
 }
 

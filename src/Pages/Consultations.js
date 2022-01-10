@@ -8,7 +8,7 @@ const Consultations = () => {
   return(
     <div id='consultations'>
       <Header background={'green-bg'}/>
-      <section className='consultations section'>
+      <section className='consultations page'>
         <Container>
           <Row>
             <Col sm={12} className='text-left'>

@@ -14,7 +14,7 @@ const About = () => {
   return(
     <div id='about' className='about'>
       <Header background={'green-bg'}/>
-      <section className='aboutme section'>
+      <section className='aboutme page'>
         <Container>
           <Row>
             <Col className='text-center'>

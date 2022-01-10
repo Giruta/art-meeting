@@ -11,7 +11,7 @@ const Video = () => {
   return(
     <div id='video'>
       <Header background={'green-bg'}/>
-      <section className='video section'>
+      <section className='video page'>
         <Container>
           <Row>
             <Col sm={12} className='text-center'>

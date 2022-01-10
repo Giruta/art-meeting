@@ -4,36 +4,35 @@ import Footer from "../Components/Footer";
 import {Col, Container, Image, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import spinner from "../assets/spinner.svg";
-import CourseComponent from "../Components/CourseComponent";
+import BlogComponent from "../Components/BlogComponent";
 import CustomersService from "../Helpers/CustomersService";
 import endpoints from "../Helpers/endpoints";
 
-const customersService = new CustomersService();
-
-const Courses = () => {
+const Blogs = () => {
   const [content, setContent] = useState({});
-  const [courses, setCourses] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [language, setLanguage] = useState('ru');
-  const [pageId, setPageId] = useState('courses');
+  const [pageId, setPageId] = useState('blogs');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState(3);
+  const [totalCount, setTotalCount] = useState(5);
 
-  // post-запрос при загрузке страницы, отправляет - Язык и ID страницы, получает - посты по-странично
+  const customersService = new CustomersService();
+
+  // post-запрос при загрузке страницы, отправляет - Язык и ID страницы, получает - блоги по-странично
   useEffect(() => {
     if(fetching) {
       console.log('fetching = ', fetching);
-      const url = `https://jsonplaceholder.typicode.com/photos?_limit=9&_page=${currentPage}`;
+      const url = `https://jsonplaceholder.typicode.com/photos?_limit=2&_page=${currentPage}`;
 
       const requestOptions = {
         // method: 'POST',
         // headers: { 'Content-Type': 'application/json' },
         // body: JSON.stringify({ mylang: language,  mypage: pageId})
       };
-      customersService.fetchDataScroll(url, setIsLoading, setCourses, courses, setCurrentPage, setError, setFetching, requestOptions)
-        .then(r => console.log('r = ', r));
+      customersService.fetchDataScroll(url, setIsLoading, setBlogs, blogs, setCurrentPage, setError, setFetching, requestOptions)
     }
   }, [fetching]);
 
@@ -43,7 +42,7 @@ const Courses = () => {
   //   const requestOptions = {
   //     method: 'POST',
   //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ mylang: language, mypage: pageId})
+  //     body: JSON.stringify({ mylang: language, mypage: pageId })
   //   };
   //   customersService.fetchData(url, setIsLoading, setTotalCount, setError, requestOptions)
   // }, [])
@@ -61,7 +60,8 @@ const Courses = () => {
     // console.log('currentPage = ', currentPage);
     // console.log('totalCount = ', totalCount);
     if((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100)
-      && (currentPage < totalCount)) {
+      // && (currentPage < totalCount)) {
+      && (blogs.length < totalCount)) {
       setFetching(true)
     }
     // console.log('общая Н стр. с учетом скролла = ', e.target.documentElement.scrollHeight);
@@ -69,12 +69,14 @@ const Courses = () => {
     // console.log('Н видимой обл.стр./Н браузера = ', window.innerHeight);
   }
 
-  const useCourses = Array.from(courses).map((course) => {
+  const useBlogs = Array.from(blogs).map((blog) => {
+    console.log('blogs = ', blogs);
+    console.log('/blogs/${blog.id} = ', `/blogs/${blog.id}`);
     return (
-      <Link key={course.id} to={`/courses/${course.id}`}>
-        <CourseComponent course={course} />
+      <Link key={blog.id} to={`/blogs/${blog.id}`}>
+        <BlogComponent blog={blog} />
       </Link>
-      )
+    )
   })
 
   return(
@@ -85,18 +87,18 @@ const Courses = () => {
           <Image src={spinner} className='spinner' alt='spinner'/>
         </div>
         :
-        <div id='courses'>
+        <div id='blogs'>
           <Header background={'green-bg'}/>
-          <section className='courses section'>
+          <section className='blog page'>
             <Container>
               <Row>
                 <Col sm={12} className='text-center'>
-                  <h2 className='projects-title blu-dot title'>Courses</h2>
+                  <h2 className='blog-title blu-dot title'>Blog</h2>
                 </Col>
               </Row>
               <Row>
                 <ul>
-                  {courses && useCourses}
+                  {blogs && useBlogs}
                 </ul>
               </Row>
             </Container>
@@ -108,4 +110,40 @@ const Courses = () => {
   );
 }
 
-export default Courses;
+export default Blogs;
+
+
+// <div id='blogs'>
+//   <section className='blog page'>
+//     <Container>
+//       <Row>
+//         <Col sm={12} className='text-center'>
+//           <h2 className='blog-title blu-dot title'>Blog</h2>
+//         </Col>
+//       </Row>
+//
+//       {/*<BlogComponent blog={}/>*/}
+//
+//
+//       {/*<Row>*/}
+//       {/*  <Col sm={12} md={6}>*/}
+//       {/*    <Link to={/#/} className='d-block'><Image className='blog-img image' src={template}/></Link>*/}
+//       {/*  </Col>*/}
+//       {/*  <Col sm={12} md={6} className='mt-md-0 mt-3'>*/}
+//       {/*    <h4 className='blog-subtitle'>Публикация в блоге(пример)</h4>*/}
+//       {/*    <h6>Some new</h6>*/}
+//       {/*    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean*/}
+//       {/*      commodo ligula eget dolor. Aenean massa. Cum sociis na…*/}
+//       {/*    </p>*/}
+//       {/*    <p>*/}
+//       {/*      <span className='blog-date'>11 ноября 2020 г.</span>*/}
+//       {/*      <span className='blog-time'>12:53</span>*/}
+//       {/*    </p>*/}
+//       {/*  </Col>*/}
+//       {/*</Row>*/}
+//     </Container>
+//   </section>
+//   <Footer/>
+// </div>
+
+

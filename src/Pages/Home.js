@@ -9,36 +9,75 @@ import CustomersService from "../Helpers/CustomersService";
 import main from '../assets/main.jpeg';
 import photo from '../assets/photo.jpeg';
 import Footer from "../Components/Footer";
-import {FaFacebook, FaInstagram, FaLinkedinIn, FaPhoneVolume, FaTelegram, FaYoutube} from "react-icons/fa";
+import {FaFacebook, FaInstagram, FaLinkedinIn, FaTelegram, FaYoutube} from "react-icons/fa";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 import arrow from '../assets/arrow.svg';
-import template from "../assets/template.png";
 import spinner from '../assets/spinner.svg';
 import {FiPhoneCall} from "react-icons/fi";
 import {MdOutlineEmail, MdOutlineTextsms} from "react-icons/md";
+import CourseComponent from "../Components/CourseComponent";
+import endpoints from "../Helpers/endpoints";
+import BlogComponent from "../Components/BlogComponent";
+import ButtonWhite from "../Components/ButtonWhite";
 
 const customersService = new CustomersService();
-const Home = () => {
-  // const { data: about, isPending, error } = useFetch('https://jsonplaceholder.typicode.com/posts/2');
-  const [content, setContent] = useState({});
-  const [language, setLanguage] = useState('');
-  const [pageId, setPageId] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
+const Home = () => {
+  const [content, setContent] = useState({});
+  const [course, setCourse] = useState({});
+  const [blog, setBlog] = useState({});
+  const [video, setVideo] = useState({});
+  const [language, setLanguage] = useState('ru');
+  const [pageId, setPageId] = useState('main');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingCourse, setIsLoadingCourse] = useState(false);
+  const [isLoadingBlog, setIsLoadingBlog] = useState(false);
+
+
+  // post-запрос при загрузке главной страницы,
+  // отправляет - Язык и ID страницы, получает - общий контент
   useEffect(() => {
-    setIsLoading(true);
-    
-    fetch('https://jsonplaceholder.typicode.com/posts/1')
-      .then(response => response.json())
-      .then(result => {
-        console.log('result = ', result);
-        setContent(result);
-        setIsLoading(false);
-      });
+     const url = `https://jsonplaceholder.typicode.com/posts/3`;
+     //  const url = endpoints.getMainContent;
+      const requestOptions = {
+        // method: 'POST',
+        // headers: { 'Content-Type': 'application/json' },
+        // body: JSON.stringify({ mylang: language,  mypage: pageId})
+      };
+      customersService.fetchData(url, setIsLoading, setContent, setError, requestOptions)
+        // .then(r => console.log('r = ', r));
   }, []);
 
+  // post-запрос при загрузке главной страницы,
+  // отправляет - Язык и ID страницы и ID секции Курсы, получает - контент для секции Курсы
+  useEffect(() => {
+    const url = `https://jsonplaceholder.typicode.com/photos/3`;
+    // const url = endpoints.getMainContentCourse;
+    const requestOptions = {
+      // method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({ mylang: language,  mypage: pageId, mysection: 'courses'})
+    };
+    customersService.fetchData(url, setIsLoadingCourse, setCourse, setError, requestOptions)
+  }, []);
+
+  // post-запрос при загрузке главной страницы,
+  // отправляет - Язык и ID страницы и ID секции Блог, получает - контент для секции Блог
+  useEffect(() => {
+    const url = `https://jsonplaceholder.typicode.com/photos/12`;
+    // const url = endpoints.getMainContentBlog;
+    const requestOptions = {
+      // method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({ mylang: language,  mypage: pageId, mysection: 'blog'})
+    };
+    customersService.fetchData(url, setIsLoadingBlog, setBlog, setError, requestOptions)
+  }, []);
+
+  // Aos animation initial
   useEffect(()=> {
     Aos.init({ duration: 2000 });
   }, []);
@@ -64,6 +103,7 @@ const Home = () => {
     console.log('result = ', result);
   }
   console.log('isLoading = ', isLoading);
+
   return(
     <>
       {isLoading
@@ -83,7 +123,7 @@ const Home = () => {
             className='img-fluid shadow-4 header-img'
             alt='background'
           />
-          <section className='header-wrapper'>
+          <section className='header-wrapper section'>
             <Container>
               <div className='header-content'>
                 <h1
@@ -140,7 +180,7 @@ const Home = () => {
               </div>
             </Container>
           </section>
-          <section className='info'>
+          <section className='info section'>
             <Container>
               <Row className='text-center'>
                 <h2 className='info-title blu-dot'>Marmeliko</h2>
@@ -186,8 +226,7 @@ const Home = () => {
               </Row>
               <Row>
                 <blockquote className="text-center info-quote">Всё то, что есть в нашей жизни когда-то было нашим или
-                  чьим-то
-                  проектом.
+                  чьим-то проектом.
                 </blockquote>
               </Row>
             </Container>
@@ -240,32 +279,44 @@ const Home = () => {
               </Row>
             </Container>
           </section>
-          <section className='blog section'>
-            <Container>
-              <Row>
-                <Col sm={12} className='text-center'>
-                  <h2 className='blog-title blu-dot title'>Blog</h2>
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={12} md={6} data-aos='fade-right'>
-                  <Link to={/#/} className='d-block'><Image className='blog-img image' src={template}/></Link>
-                </Col>
-                <Col sm={12} md={6} className='mt-md-0 mt-3' data-aos='fade-left'>
-                  <h4 className='blog-title'>Публикация в блоге(пример)</h4>
-                  <h6>Some new</h6>
-                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis na…
-                  </p>
-                  <p>
-                    <span className='blog-date'>11 ноября 2020 г.</span>
-                    <span className='blog-time'>12:53</span>
-                  </p>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-          <section className='video section pt-0'>
+          {isLoadingBlog
+            ?
+            <div className='wrapper-spinner'>
+              <Image src={spinner} className='spinner' alt='spinner'/>
+            </div>
+            :
+            <section className='blog section'>
+              <Container>
+                <Row>
+                  <Col sm={12} className='text-center'>
+                    <h2 className='blog-title blu-dot title'>Блог</h2>
+                  </Col>
+                </Row>
+                <BlogComponent blog={blog}/>
+                <ButtonWhite text={'Посмотреть все'} link={'blogs'}/>
+              </Container>
+            </section>
+          }
+
+          {isLoadingCourse
+            ?
+            <div className='wrapper-spinner'>
+              <Image src={spinner} className='spinner' alt='spinner'/>
+            </div>
+            :
+            <section className='courses'>
+              <Container>
+                <Row>
+                  <Col sm={12} className='text-center'>
+                    <h2 className='courses-title blu-dot title'>Курсы</h2>
+                  </Col>
+                </Row>
+                <CourseComponent course={course}/>
+                <ButtonWhite text={'Посмотреть все'} link={'courses'}/>
+              </Container>
+            </section>
+          }
+          <section className='video section pt-0 pb-5'>
             <Container>
               <Row>
                 <Col sm={12} className='text-center'>

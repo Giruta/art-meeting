@@ -2,51 +2,33 @@ import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import {Button, Col, Container, Form, Image, Row} from "react-bootstrap";
-// import photo from "../assets/photo.jpeg";
-// import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { useState, useEffect} from "react";
-// import work from "../assets/work.jpeg";
 import spinner from "../assets/spinner.svg";
 import CourseComponent from "../Components/CourseComponent";
+import CustomersService from "../Helpers/CustomersService";
+
+const customersService = new CustomersService();
 
 const Course = () => {
   const {id} = useParams();
-  console.log('id = ', id);
   const [course, setCourse] = useState({});
-  const [language, setLanguage] = useState('');
+  const [pageId, setPageId] = useState('course');
+  const [language, setLanguage] = useState('ru');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
-    const fetchData = async () => {
-      try{
-        setIsLoading(true);
-        const result = await fetch(url);
-        const json = await result.json();
-        setCourse(json);
-        setIsLoading(false);
-        console.log('json from course = ', json)
-      } catch (error) {
-        console.error(error);
-        setError(error);
-      }
+  //post-запрос при загрузке страницы для получения контента для страницы Курса Id
+  useEffect(()=>{
+    // const url = endpoints.getContentCoursePage; // endpoint для получения контента для курса по id
+    const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+    const requestOptions = {
+      // method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({ mylang: language, mypage: pageId, id})
     };
-    fetchData();
-  }, [id]);
-
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //
-  //   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log('result = ', result);
-  //       setCourse(result);
-  //       setIsLoading(false);
-  //     });
-  // }, [])
+    customersService.fetchData(url, setIsLoading, setCourse, setError, requestOptions)
+  }, [id])
 
   return(
     <>
@@ -67,9 +49,8 @@ const Course = () => {
                   <h2 className='course-title blu-dot title'>{course.title}</h2>
                 </Col>
               </Row>
-              {console.log('course!!!!! = ', course)}
               <CourseComponent course={course} />
-              <Row className='color-wrapper'>
+              <Row className='color-wrapper mt-5'>
                 <div className='border-wrapper'></div>
                 <Col sm={12}>
                   <div className='send-wrapper'>

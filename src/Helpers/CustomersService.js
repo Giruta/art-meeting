@@ -8,23 +8,59 @@ export default class CustomersService{
     this.url = this.protocol + '//' + this.host + '/';
   }
 
-  createCustomer(customer){
-    return axios.post(`${this.url}api/register/`,customer);
-  }
+  fetchDataScroll = async (url, loading, setPosts, posts, currentPage, setError, fetching, requestOptions) => {
+    try{
+      loading(true);
+      const result = await fetch(url, requestOptions);
+      const json = await result.json();
+      console.log('json = ', json);
+      setPosts([...posts, ...json]);
+      loading(false);
+      currentPage(prevState => prevState + 1);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      fetching(false)
+    }
+  };
 
-  getContent(language){
-    return axios.get(`${this.url}api/translate/`, {headers: {
-        mylang:language
-      }})
-      .then(response => response.data);
-  }
+  // для получения totalPages для скроллинга
+  // для получения основного контента на мейн странице
+  fetchData = async (url, loading, setState, setError, requestOptions) => {
+    try{
+      loading(true);
+      const result = await fetch(url, requestOptions);
+      const json = await result.json();
+      console.log('json = ', json);
+      setState(json);
+      loading(false);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      loading(false);
+    }
+  };
 
-  getContent1(language){
-    return axios.get(`${this.url}api/translate/`, {headers: {
-        mylang:language
-      }})
-      .then(response => response.data);
-  }
+
+  // createCustomer(customer){
+  //   return axios.post(`${this.url}api/register/`,customer);
+  // }
+  //
+  // getContent(language){
+  //   return axios.get(`${this.url}api/translate/`, {headers: {
+  //       mylang:language
+  //     }})
+  //     .then(response => response.data);
+  // }
+  //
+  // getContent1(language){
+  //   return axios.get(`${this.url}api/translate/`, {headers: {
+  //       mylang:language
+  //     }})
+  //     .then(response => response.data);
+  // }
 
   // getContent1(data){
   //   const url = `${this.url}`;

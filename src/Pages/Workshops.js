@@ -9,7 +9,7 @@ const Workshops = () => {
   return(
     <div id='workshops'>
       <Header background={'green-bg'}/>
-      <section className='workshops section'>
+      <section className='workshops page'>
         <Container>
           <Row>
             <Col sm={12} className='text-center'>
