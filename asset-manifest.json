@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/art-meeting/static/css/main.c5e12f85.css",
-    "main.js": "/art-meeting/static/js/main.cdfc08d1.js",
+    "main.css": "/art-meeting/static/css/main.e5664152.css",
+    "main.js": "/art-meeting/static/js/main.86ffc10b.js",
     "static/media/main.jpeg": "/art-meeting/static/media/main.14de710b38c803a54d1c.jpeg",
     "static/media/about.png": "/art-meeting/static/media/about.7a7dd0d6ac6c59a515d2.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/art-meeting/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -16,11 +16,11 @@
     "static/media/logo.svg": "/art-meeting/static/media/logo.7961d3b59d8f6403756d9e9dd68b9bf8.svg",
     "index.html": "/art-meeting/index.html",
     "static/media/arrow.svg": "/art-meeting/static/media/arrow.5333df30faba876ba81f2497a785dc88.svg",
-    "main.c5e12f85.css.map": "/art-meeting/static/css/main.c5e12f85.css.map",
-    "main.cdfc08d1.js.map": "/art-meeting/static/js/main.cdfc08d1.js.map"
+    "main.e5664152.css.map": "/art-meeting/static/css/main.e5664152.css.map",
+    "main.86ffc10b.js.map": "/art-meeting/static/js/main.86ffc10b.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5e12f85.css",
-    "static/js/main.cdfc08d1.js"
+    "static/css/main.e5664152.css",
+    "static/js/main.86ffc10b.js"
   ]
 }
