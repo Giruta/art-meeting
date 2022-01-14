@@ -42,7 +42,7 @@ const Course = () => {
           <Header
             background={'gray-bg'}
           />
-          <section className='course section'>
+          <section className='course page'>
             <Container>
               <Row>
                 <Col sm={12} className='text-center'>

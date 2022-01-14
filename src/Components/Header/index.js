@@ -59,7 +59,7 @@ const Header = (props) => {
                   className='nav-link'
                   tabIndex='0'
                   role='button'
-                  to='/video'
+                  to='/videos'
                 >
                   Видео
                 </Link>
